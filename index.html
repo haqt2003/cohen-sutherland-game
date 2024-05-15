@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Màn hình load -->
+    <div id="loadingScreen" class="prePage">
+      <div class="prePage-content">
+        <h1 style="color: #fff">TOWER BLOCK</h1>
+        <h2 style="color: #fff">Loading...</h2>
+        <div class="progress-bar">
+          <div class="progress"></div>
+        </div>
+        <div class="">
+          <img class="mute-icon hide" src="/assets/images/mute.svg" alt="" />
+          <img class="speak-icon hide" src="/assets/images/speak.svg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Màn hình chính -->
+    <div id="mainContent">
+      <!-- <h1 style="color: #fff">TOWER BLOCK</h1> -->
+      <canvas id="myCanvas" width="600" height="400"></canvas>
+      <audio id="backgroundMusic" loop>
+        <source src="/assets/audios/sound.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
+    <!-- Modal thua cuộc -->
+    <div class="modal">
+      <h1 class="lose-text">YOU LOSE</h1>
+      <button class="restart-btn">Restart</button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+@font-face {
+  font-family: "Arcade";
+  src: url("/assets/fonts/ARCADE.TTF") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Arcade Classic";
+  src: url("/assets/fonts/ARCADECLASSIC.TTF") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  background-color: #000;
+  margin: 0;
+  margin-top: 60px;
+  padding: 0;
+  font-family: "Arcade", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  overflow: hidden;
+}
+
+h1 {
+  color: #fff;
+  text-align: center;
+  font-size: 40px;
+}
+
+#myCanvas {
+  display: block;
+  margin: 125px auto 0 auto;
+  background-color: #fff;
+  background-image: url("/assets/images/6.jpg");
+  background-size: cover;
+  border-radius: 12px;
+  /* border: #fff 3px solid; */
+  cursor: pointer;
+}
+
+.restart-btn {
+  margin: 225px auto 0 auto;
+  display: block;
+  height: 60px;
+  width: 160px;
+  font-size: 20px;
+  font-family: "Arcade Classic", sans-serif;
+  text-align: center center;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.modal {
+  padding-top: 310px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.lose-text {
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+.hide {
+  display: none !important;
+}
+
+#mainContent {
+  display: none;
+}
+
+.prePage {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.prePage-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 13px;
+  overflow: hidden;
+  margin-top: 20px;
+  height: 20px;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.progress {
+  height: 100%;
+  width: 0;
+  background-color: #4caf50;
+  animation-name: load;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes load {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+    display: none;
+  }
+}
+
+.mute-icon {
+  width: 40px;
+  cursor: pointer;
+}
+
+.speak-icon {
+  width: 40px;
+  cursor: pointer;
+}
