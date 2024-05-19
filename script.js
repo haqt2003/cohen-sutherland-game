@@ -77,11 +77,14 @@ function animate() {
     }
     if (mode == "fall") {
       boxes[current].y = boxes[current].y - ySpeed;
+
       if (boxes[current].y == boxes[current - 1].y + height) {
         mode = "bounce";
         let difference = boxes[current].x - boxes[current - 1].x;
         if (Math.abs(difference) >= boxes[current].width) {
           gameOver();
+        } else if (difference !== 0) {
+          playCutSound();
         }
         debris = {
           y: boxes[current].y,
@@ -99,6 +102,7 @@ function animate() {
         else xSpeed--;
         current++;
         scrollCounter = height;
+
         newBox();
       }
     }
@@ -109,6 +113,12 @@ function animate() {
     }
   }
   window.requestAnimationFrame(animate);
+}
+
+function playCutSound() {
+  const cutSound = document.getElementById("cutSound");
+  cutSound.currentTime = 0;
+  cutSound.play();
 }
 
 function restart() {
