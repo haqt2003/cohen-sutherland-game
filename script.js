@@ -1,8 +1,6 @@
 let canvas = document.getElementById("myCanvas");
 const restartBtn = document.querySelector(".restart-btn");
 const modal = document.querySelector(".modal");
-// const mute = document.querySelector(".mute-icon");
-// const speak = document.querySelector(".speak-icon");
 let colors = [
   "#7BD3EA",
   "#A1EEBD",
@@ -31,7 +29,43 @@ let debris = {
   width: 0,
 };
 
-// Hàm chọn màu ngẫu nhiên không trùng
+const LEFT = 1; // 0001
+const RIGHT = 2; // 0010
+const BOTTOM = 4; // 0100
+const TOP = 8; // 1000
+
+function computeOutCode(x, y, width) {
+  let code = 0;
+
+  if (x < 0)
+    // to the left of canvas
+    code |= LEFT;
+  else if (x + width > canvas.width)
+    // to the right of canvas
+    code |= RIGHT;
+  if (y < 0)
+    // below the canvas
+    code |= BOTTOM;
+  else if (y > canvas.height)
+    // above the canvas
+    code |= TOP;
+
+  return code;
+}
+
+function cohenSutherlandClipping(box1, box2) {
+  let code1 = computeOutCode(box1.x, box1.y, box1.width);
+  let code2 = computeOutCode(box2.x, box2.y, box2.width);
+
+  if (!(code1 | code2)) {
+    console.log("No clipping needed");
+  } else if (code1 & code2) {
+    console.log("Boxes do not interact");
+  } else {
+    console.log("Clipping needed");
+  }
+}
+
 function getRandomColor() {
   let newColorIndex;
   do {
@@ -66,6 +100,7 @@ function animate() {
       let box = boxes[n];
       context.fillStyle = box.color;
       context.fillRect(box.x, 600 - box.y + cameraY, box.width, height);
+      if (n > 0) cohenSutherlandClipping(boxes[n], boxes[n - 1]);
     }
     context.fillStyle = "#4A5B75";
     context.fillRect(debris.x, 600 - debris.y + cameraY, debris.width, height);
@@ -150,16 +185,6 @@ restartBtn.onclick = function () {
   restart();
 };
 
-// mute.onclick = function () {
-//   mute.classList.add("hide");
-//   speak.classList.remove("hide");
-// };
-
-// speak.onclick = function () {
-//   speak.classList.add("hide");
-//   mute.classList.remove("hide");
-// };
-
 canvas.onpointerdown = function () {
   if (mode == "gameOver") {
     restart();
@@ -168,7 +193,6 @@ canvas.onpointerdown = function () {
   }
 };
 
-// Hiển thị màn hình load
 window.onload = function () {
   let preModal = document.getElementById("loadingScreen");
   let mainContent = document.getElementById("mainContent");
